@@ -1,110 +1,55 @@
-/* ====================== GENERAL ====================== */
+/* ===== GENERAL ===== */
 body {
-  font-family: 'Poppins', sans-serif;  /* clean body text */
-  background-color: #fff5f7; 
   margin: 0;
-  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #fff0f5;
+  color: #333;
 }
 
 h1, h2, h4, h5 {
-  font-family: 'Dancing Script', cursive; /* cute romantic headings */
-  color: #d63384; 
-  text-shadow: 1px 1px 2px #fff;
+  font-family: 'Dancing Script', cursive;
 }
 
-/* ====================== HERO ====================== */
-/* HERO SECTION */
+/* ===== HERO SECTION ===== */
 .hero {
-  position: relative;
-  height: 60vh; /* adjust as needed */
+  height: 400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: white;
-  font-family: 'Dancing Script', cursive;
-
-  /* Background image */
-  background-image: url('assets/our-pic.jpg'); /* <-- your hero image path */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  /* Optional dark overlay for readability */
-  background-color: rgba(0,0,0,0.4);
-  background-blend-mode: darken;
-  border-radius: 12px;
+  color: #fff;
+  background: url('assets/our-pic.jpg') no-repeat center center/cover;
+  position: relative;
 }
 
-/* Hero text shadow for readability */
-.hero h1, .hero p {
-  color: #fff5f7;
-  text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+.hero h1 {
+  font-size: 3rem;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
 }
 
-
-/* ====================== BUTTONS ====================== */
-button {
-  font-family: 'Poppins', sans-serif;
-  transition: all 0.3s ease;
+.hero p {
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
 }
 
-button:hover {
-  transform: scale(1.05);
-}
-
-/* MUSIC BUTTON */
+/* ===== MUSIC BUTTON ===== */
 .music-btn {
   position: fixed;
   top: 20px;
   right: 20px;
-  z-index: 1000;
-  font-size: 24px;
-  background: transparent;
+  background: #ff69b4;
+  color: #fff;
   border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
   cursor: pointer;
+  z-index: 100;
 }
 
-/* ====================== LOVE NOTE ====================== */
-.love-note {
-  font-size: 1.2rem;
-  margin-top: 15px;
-  color: #d63384;
-  text-shadow: 0 0 3px #fff;
-}
-
-/* ====================== QUIZ CARDS ====================== */
-.quiz-card, .card {
-  border-radius: 15px;
-  background-color: #ffe6f0;
-  padding: 20px;
-}
-
-.option, .quiz2-option, .btn-danger, .btn-success {
-  margin: 8px 0;
-  width: 100%;
-  font-size: 1rem;
-  font-family: 'Poppins', sans-serif;
-}
-
-.final-message {
-  margin-top: 15px;
-  font-weight: bold;
-  color: #d63384;
-  font-size: 1.1rem;
-  font-family: 'Dancing Script', cursive;
-}
-
-/* ====================== TAP GAME ====================== */
-#tapScore {
-  font-weight: bold;
-  margin-top: 10px;
-  color: #d63384;
-  font-family: 'Poppins', sans-serif;
-}
-
-/* ====================== HEART ANIMATION ====================== */
+/* ===== FLOATING HEARTS ===== */
 .heart-container {
   position: fixed;
   top: 0;
@@ -113,60 +58,127 @@ button:hover {
   height: 100%;
   pointer-events: none;
   overflow: hidden;
-  z-index: 0;
+  z-index: 1;
 }
 
 .heart {
   position: absolute;
-  width: 30px;
-  height: 30px;
-  background: url('assets/heart.png') no-repeat center center;
-  background-size: cover;
-  animation: floatUp 5s linear infinite;
+  width: 20px;
+  height: 20px;
+  background-color: pink;
+  transform: rotate(-45deg);
+  animation: floatUp linear infinite;
+  opacity: 0.8;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: inherit;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart::after {
+  left: 10px;
+  top: 0;
 }
 
 @keyframes floatUp {
   0% {
-    transform: translateY(100vh) scale(0.5);
-    opacity: 0.8;
+    transform: translate(0, 0) rotate(-45deg);
+    opacity: 1;
   }
   100% {
-    transform: translateY(-10vh) scale(1);
+    transform: translate(var(--x), -800px) rotate(-45deg);
     opacity: 0;
   }
 }
 
-/* ====================== CAROUSEL ====================== */
-.carousel-inner img {
+/* ===== CARDS ===== */
+.card {
   border-radius: 12px;
-  height: 400px;
-  object-fit: cover;
+  background-color: #fff0f5;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  margin-bottom: 20px;
 }
 
-/* ====================== INPUTS ====================== */
-input {
-  border-radius: 12px;
-  border: 1px solid #d63384;
-  font-family: 'Poppins', sans-serif;
+/* ===== BUTTONS ===== */
+.btn {
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 
-/* ====================== FOOTER ====================== */
+.btn-danger {
+  background-color: #ff3366;
+  border-color: #ff3366;
+}
+
+.btn-danger:hover {
+  background-color: #ff1493;
+  border-color: #ff1493;
+}
+
+.btn-success {
+  background-color: #ff69b4;
+  border-color: #ff69b4;
+}
+
+.btn-success:hover {
+  background-color: #ff1493;
+  border-color: #ff1493;
+}
+
+/* ===== QUIZZES ===== */
+.quiz-card h5,
+.card h4 {
+  margin-bottom: 15px;
+}
+
+.option, .quiz2-option {
+  margin: 5px 0;
+  width: 100%;
+}
+
+#wordInput {
+  border-radius: 25px;
+}
+
+/* ===== LOVE NOTE ===== */
+.love-note {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #ff3366;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+/* ===== TAP GAME ===== */
+#tapScore {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+/* ===== FOOTER ===== */
 footer {
-  background-color: #ffd9e6;
-  color: #d63384;
-  font-weight: bold;
-  border-radius: 12px;
-  margin-top: 40px;
-  padding: 10px;
-  font-family: 'Dancing Script', cursive;
+  background-color: #ffe4e1;
+  color: #ff1493;
+  font-size: 1rem;
 }
 
-/* ====================== MEDIA QUERIES ====================== */
-@media screen and (max-width: 768px) {
-  .hero {
-    padding: 50px 15px;
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
   }
-  .carousel-inner img {
-    height: 250px;
+  .hero p {
+    font-size: 1rem;
   }
 }

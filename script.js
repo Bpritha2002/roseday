@@ -1,6 +1,10 @@
 // ====================== MUSIC ======================
-let playing = false;
 const music = document.getElementById("bgMusic");
+window.addEventListener("load", () => {
+  music.volume = 0.3;
+  music.play().catch(() => console.log("Autoplay blocked"));
+});
+let playing = true;
 
 function toggleMusic() {
   playing ? music.pause() : music.play();
@@ -52,8 +56,7 @@ function nextQuestion() {
     qEl.textContent = "Quiz Completed 💖";
     opts.forEach(b => b.style.display = "none");
     document.getElementById("finalMessage").textContent =
-      `Sournanil, you scored ${score}/${quiz.length}.  
-       No matter the score, you are Pritha’s forever 🌹❤️`;
+      `Sournanil, you scored ${score}/${quiz.length}. No matter the score, you are Pritha’s forever 🌹❤️`;
     document.getElementById("roseBtn").classList.remove("d-none");
   }
 }
@@ -118,6 +121,39 @@ function tapRose() {
 function sendRose() {
   alert("🌹 Rose accepted! Pritha loves you endlessly 💕");
 }
+
+// ====================== FLOATING HEARTS ======================
+// ====================== FLOATING HEARTS ======================
+function createHeart() {
+  const heartContainer = document.querySelector(".heart-container");
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+
+  // Random size between 15px and 35px
+  const size = 15 + Math.random() * 20;
+  heart.style.width = size + "px";
+  heart.style.height = size + "px";
+
+  // Random color pink/red
+  const colors = ["#ff69b4", "#ff1493", "#ff3366", "#ff85a2"];
+  heart.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+  heart.style.setProperty("--x", (Math.random() * 200 - 100) + "px"); // random drift X
+
+  // Random starting position
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.bottom = "-50px";
+
+  // Random animation duration
+  heart.style.animationDuration = 4 + Math.random() * 4 + "s";
+
+  heartContainer.appendChild(heart);
+
+  // Remove heart after animation
+  setTimeout(() => heart.remove(), 8000);
+}
+
+setInterval(createHeart, 250);
+
 
 // ====================== INIT ======================
 loadQ();
